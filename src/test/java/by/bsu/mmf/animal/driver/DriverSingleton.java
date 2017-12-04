@@ -12,9 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.annotation.Nullable;
-import java.io.File;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Anya) on 23.11.17.

@@ -17,6 +17,10 @@ public class ProfilePage extends AbstractPage {
     private static final Logger logger = LogManager.getRootLogger();
     public final String BASE_URL = "http://animal.by/user/animal_fan_98/";
 
+
+    @FindBy(css = "h1.entry-title > span:nth-child(1)")
+    private WebElement fullName;
+
     @FindBy(className = "access_form_button")
     private WebElement profileCheckBtn;
 
@@ -38,4 +42,9 @@ public class ProfilePage extends AbstractPage {
         System.out.println(profileCheckBtn.getText());
         return profileCheckBtn.getText().toLowerCase().equals("профиль");
     }
+
+    public String getLastname() {
+        return fullName.getText().split(" ")[1].trim();
+    }
+
 }

@@ -20,6 +20,12 @@ public class CatalogPage extends AbstractPage {
     @FindBy(name = "keywords")
     private WebElement searchField;
 
+    @FindBy(xpath = "/html/body/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div[2]/h3/a")
+    private WebElement newsLink;
+
+    @FindBy(css = "#td_uid_2_5a25cc9b4934d > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > h3:nth-child(1)")
+    private WebElement openedNews;
+
     public CatalogPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver,this);
@@ -47,4 +53,18 @@ public class CatalogPage extends AbstractPage {
     }
 
 
+    public void openNews() {
+        Actions actions = new Actions(driver);
+        actions
+                .click(newsLink)
+                .build()
+                .perform();
+
+    }
+
+    public boolean isNewsDisplayed() {
+
+        return newsLink.isDisplayed();
+
+    }
 }

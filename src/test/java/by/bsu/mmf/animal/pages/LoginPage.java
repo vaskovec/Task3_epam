@@ -52,7 +52,7 @@ public class LoginPage extends AbstractPage {
                 .sendKeys(inputUsername,username)
                 .sendKeys(inputPassword,password)
                 .click(buttonSubmit)
-                .pause(5000)
+                .pause(3000)
                 .build()
                 .perform();
 
