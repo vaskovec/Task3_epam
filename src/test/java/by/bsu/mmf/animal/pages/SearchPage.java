@@ -1,22 +1,15 @@
 package by.bsu.mmf.animal.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.internal.Locatable;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 
 /**
  * Created by Anya) on 26.11.17.
  */
 public class SearchPage extends AbstractPage {
-
-    private Logger logger = LogManager.getRootLogger();
-    private final String BASE_URL = "http://catalog.animal.by/all/";
 
     @FindBy(name = "keywords")
     private WebElement keyWordsInp;
@@ -27,7 +20,7 @@ public class SearchPage extends AbstractPage {
     @FindBy(className = "sabai-btn-primary")
     private WebElement searchBtn;
 
-    @FindBy(css = "#sabai-entity-content-48 > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > span:nth-child(1)")
+    @FindBy(className = "sabai-googlemaps-address-0")
     private WebElement cityCheck;
 
     @FindBy(css = "a.sabai-btn:nth-child(3)")
@@ -45,13 +38,10 @@ public class SearchPage extends AbstractPage {
     public SearchPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver,this);
+        BASE_URL = "http://catalog.animal.by/all/";
     }
 
 
-    @Override
-    public void openPage() {
-        driver.navigate().to(BASE_URL);
-    }
 
     public void search(String req) {
         Actions searchActions = new Actions(driver);

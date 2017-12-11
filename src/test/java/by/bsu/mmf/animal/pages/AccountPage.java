@@ -14,9 +14,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AccountPage extends AbstractPage {
 
-    private static final Logger logger = LogManager.getRootLogger();
-    public final String BASE_URL = "http://animal.by/account/";
-
     @FindBy(css = "h1.entry-title > span:nth-child(1)")
     private WebElement accountCheckTag;
 
@@ -26,18 +23,15 @@ public class AccountPage extends AbstractPage {
     @FindBy(css = "div.um-col-alt:nth-child(6) > div:nth-child(1) > input:nth-child(1)")
     private WebElement updateProfileBtn;
 
-    @FindBy(css = ".um-account-side > ul:nth-child(2) > li:nth-child(2) > a:nth-child(1)")
+    @FindBy(css = ".um-account-side  li:nth-child(2) > a:nth-child(1)")
     private WebElement cahngePasswordLink;
 
     public AccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        BASE_URL = "http://animal.by/account/";
     }
 
-    public void openPage() {
-        logger.info("account page opened");
-        driver.navigate().to(BASE_URL);
-    }
 
     public boolean accessToAccount() {
 
@@ -68,13 +62,13 @@ public class AccountPage extends AbstractPage {
         cahngePasswordLink.click();
 
         WebElement oldPasswordField = driver.findElement(By.cssSelector("#current_user_password"));
-        WebElement newasswordField = driver.findElement(By.cssSelector("#user_password"));
+        WebElement newsWordField = driver.findElement(By.cssSelector("#user_password"));
         WebElement confirmPasswordField = driver.findElement(By.cssSelector("#confirm_user_password"));
         WebElement updatePasswordBtn = driver.findElement(By.cssSelector("div.um-col-alt:nth-child(5) > div:nth-child(1) > input:nth-child(1)"));
         Actions actions = new Actions(driver);
         actions
                 .sendKeys(oldPasswordField,oldPassword)
-                .sendKeys(newasswordField,newPassword)
+                .sendKeys(newsWordField,newPassword)
                 .sendKeys(confirmPasswordField,newPassword)
                 .pause(2000)
                 .click(updatePasswordBtn)

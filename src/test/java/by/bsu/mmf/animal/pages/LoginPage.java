@@ -13,35 +13,27 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by Anya) on 23.11.17.
  */
-public class LoginPage extends AbstractPage {
+public class LoginPage extends AbstractPage {;
 
-    private final Logger logger = LogManager.getRootLogger();
-    private final String BASE_URL = "http://animal.by/login/";
-
-    @FindBy(css = ".uimob500 > div:nth-child(1) > form:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+    @FindBy(css = ".td-page-content #username-3062")
     private WebElement inputUsername;
 
-    @FindBy(css = ".uimob500 > div:nth-child(1) > form:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)")
+    @FindBy(css = ".td-page-content #user_password-3062")
     private WebElement inputPassword;
 
     @FindBy(className = "access_form_button")
     private WebElement accessBtn;
 
-    @FindBy(css = ".uimob500 > div:nth-child(1) > form:nth-child(1) > div:nth-child(5) > div:nth-child(3) > input:nth-child(1)")
+    @FindBy(css = ".td-page-content .um-left  input")
     private WebElement buttonSubmit;
 
     public LoginPage(WebDriver driver)
     {
         super(driver);
         PageFactory.initElements(this.driver, this);
+        BASE_URL = "http://animal.by/login/";
     }
 
-    @Override
-    public void openPage()
-    {
-        driver.navigate().to(BASE_URL);
-        logger.info("Login page opened");
-    }
 
     public void login(String username, String password)
     {

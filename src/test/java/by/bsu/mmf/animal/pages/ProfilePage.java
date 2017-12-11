@@ -1,7 +1,5 @@
 package by.bsu.mmf.animal.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,10 +12,6 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class ProfilePage extends AbstractPage {
 
-    private static final Logger logger = LogManager.getRootLogger();
-    public final String BASE_URL = "http://animal.by/user/animal_fan_98/";
-
-
     @FindBy(css = "h1.entry-title > span:nth-child(1)")
     private WebElement fullName;
 
@@ -27,11 +21,7 @@ public class ProfilePage extends AbstractPage {
     public ProfilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
-    }
-
-    public void openPage() {
-        driver.navigate().to(BASE_URL);
-        logger.info("profile page opened");
+        BASE_URL = "http://animal.by/user/animal_fan_98/";
     }
 
     public Boolean profileAccessAbility() {
