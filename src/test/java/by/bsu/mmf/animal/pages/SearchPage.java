@@ -1,5 +1,6 @@
 package by.bsu.mmf.animal.pages;
 
+import by.bsu.mmf.animal.util.ExternalSelectorFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class SearchPage extends AbstractPage {
 
+    public static final String PARENT_RESULTS = "PARENT_RESULTS";
     @FindBy(name = "keywords")
     private WebElement keyWordsInp;
 
@@ -69,9 +71,9 @@ public class SearchPage extends AbstractPage {
     }
 
     public boolean isAnyResultsFound() {
-        WebElement resultsParentBlock = driver.findElement (By.xpath("/html/body/div[3]/div[2]/div[2]/div/div[2]/div[1]/div/div[3]/div/div/div[2]/div[3]"));
+        WebElement resultsParentBlock = driver.findElement(ExternalSelectorFactory.getSelectorByName(PARENT_RESULTS));
 
-        return resultsParentBlock.findElement(By.className("sabai-row")) != null;
+        return resultsParentBlock.isDisplayed();
     }
 
     public boolean isAnyResultsFoundByCity(String city) {

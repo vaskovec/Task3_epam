@@ -1,8 +1,6 @@
 package by.bsu.mmf.animal.pages;
 
-import by.bsu.mmf.animal.steps.Steps;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.bsu.mmf.animal.util.ExternalSelectorFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +12,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AccountPage extends AbstractPage {
 
+    public static final String CURRENT_PASSWORD = "CURRENT_PASSWORD";
+    public static final String NEW_PASSWORD = "NEW_PASSWORD";
+    public static final String CONFIRM_PASSWORD = "CONFIRM_PASSWORD";
+    public static final String UPDATE_PASSWORD = "UPDATE_PASSWORD";
     @FindBy(css = "h1.entry-title > span:nth-child(1)")
     private WebElement accountCheckTag;
 
@@ -24,7 +26,7 @@ public class AccountPage extends AbstractPage {
     private WebElement updateProfileBtn;
 
     @FindBy(css = ".um-account-side  li:nth-child(2) > a:nth-child(1)")
-    private WebElement cahngePasswordLink;
+    private WebElement changePasswordLink;
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -59,12 +61,12 @@ public class AccountPage extends AbstractPage {
 
     public void changePassword(String oldPassword, String newPassword) {
 
-        cahngePasswordLink.click();
+        changePasswordLink.click();
 
-        WebElement oldPasswordField = driver.findElement(By.cssSelector("#current_user_password"));
-        WebElement newsWordField = driver.findElement(By.cssSelector("#user_password"));
-        WebElement confirmPasswordField = driver.findElement(By.cssSelector("#confirm_user_password"));
-        WebElement updatePasswordBtn = driver.findElement(By.cssSelector("div.um-col-alt:nth-child(5) > div:nth-child(1) > input:nth-child(1)"));
+        WebElement oldPasswordField = driver.findElement(ExternalSelectorFactory.getSelectorByName(CURRENT_PASSWORD));
+        WebElement newsWordField = driver.findElement(ExternalSelectorFactory.getSelectorByName(NEW_PASSWORD));
+        WebElement confirmPasswordField = driver.findElement(ExternalSelectorFactory.getSelectorByName(CONFIRM_PASSWORD));
+        WebElement updatePasswordBtn = driver.findElement(ExternalSelectorFactory.getSelectorByName(UPDATE_PASSWORD));
         Actions actions = new Actions(driver);
         actions
                 .sendKeys(oldPasswordField,oldPassword)
